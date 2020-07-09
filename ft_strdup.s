@@ -8,8 +8,6 @@ extern _malloc
 ; Parameters registers
 ; RDI RSI RDX RCX R8 R9
 
-
-
 _ft_strdup:
 	cmp rdi, 0
 	je error ; check if NULL
@@ -26,5 +24,5 @@ _ft_strdup:
 	ret
 
 error:
-	xor rax, rax			
+	xor rax, rax
 	ret

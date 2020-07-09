@@ -1,16 +1,15 @@
 section .text
-    global _ft_strlen
+	global _ft_strlen
 
 _ft_strlen:
-    mov rax, 0 ; i = 0
-    jmp loops
+	mov rax, 0
+	jmp while
 
-increment:
-    inc rax ; i++
-
-loops:
-    cmp BYTE[rdi + rax], 0 ; str[i] == 0
-    jne increment ; 
+while:
+	cmp BYTE [rdi + rax], 0
+	je done ; jump equal
+	inc rax ; rax + 1
+	jmp while 
 
 done:
-    ret
+	ret
