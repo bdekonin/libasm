@@ -6,40 +6,29 @@
 #    By: bdekonin <bdekonin@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/03/15 18:26:05 by bdekonin      #+#    #+#                  #
-#    Updated: 2020/04/04 22:19:22 by bdekonin      ########   odam.nl          #
+#    Updated: 2020/11/11 21:42:11 by bdekonin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-RM = rm -f
-LIB = ar rcs
-
-CC = gcc
-CCFLAGS = -g -Wall -Wextra -fomit-frame-pointer
-
-NASM = nasm
-NASMFLAGS = -f macho64
-
 NAME = libasm.a
-ASMSRC = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s \
+SRC = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s \
 		 ft_strdup.s
 
-ASMOBJ = $(ASMSRC:.s=.o)
+OBJ = $(SRC:.s=.o)
 
 all: $(NAME)
 
-$(NAME): $(ASMOBJ)
-	$(LIB) $(NAME) $(ASMOBJ)
-
-test: all
-	$(CC) main.c $(NAME)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
 %.o: %.s
-	$(NASM) $(NASMFLAGS) -o $@ $<
+	nasm -f macho64 -o $@ $<
 
 clean:
-	$(RM) $(ASMOBJ)
+	rm -f $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
+	rm -f ./a.out
 
 re: fclean all
