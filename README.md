@@ -1,5 +1,7 @@
 # libasm
 
+[![CodeFactor](https://www.codefactor.io/repository/github/bdekonin/libasm/badge)](https://www.codefactor.io/repository/github/bdekonin/libasm)
+
 Write the following functions in x64 assembly (in the Intel syntax):
 
 ```C
